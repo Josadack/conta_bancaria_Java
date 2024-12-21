@@ -2,6 +2,8 @@ package com.conta_bancaria.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.rmi.server.UID;
 import java.util.UUID;
 
@@ -9,7 +11,11 @@ import java.util.UUID;
 @Table(name = "TB_Conta")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // Estrutura de herança
 @DiscriminatorColumn(name = "tipo_conta", discriminatorType = DiscriminatorType.STRING)
-public abstract class Conta {
+public abstract class Conta implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
