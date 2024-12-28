@@ -1,5 +1,6 @@
 package com.conta_bancaria.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
@@ -7,26 +8,27 @@ import java.util.UUID;
 
 @Entity
 @DiscriminatorValue("Corrente") // Valor que será armazenado na coluna do discriminator
-public class ContaCorrente extends Conta{
+public class ContaCorrente extends ContaModel {
 
-    private double _limite;
+    @Column(name = "limite")
+    private double limite;
 
     public ContaCorrente() {
-        super();  // Necessário para chamadas ao construtor da superclasse
+       // super();  // Necessário para chamadas ao construtor da superclasse
     }
 
-    public ContaCorrente(UUID numero, int agencia, int tipo, String titular, int saldo, double limite) {
-        super(numero, agencia, tipo, titular, saldo);
-        this._limite = limite;
+    public ContaCorrente(UUID id,int numero, int agencia, String titular, int saldo, double limite) {
+        super(id,numero, agencia, titular, saldo);
+        this.limite = limite;
     }
 
 
-    public double get_limite() {
-        return _limite;
+    public double getLimite() {
+        return limite;
     }
 
-    public void set_limite(double limite) {
-        this._limite = limite;
+    public void setLimite(double limite) {
+        this.limite = limite;
     }
 
 

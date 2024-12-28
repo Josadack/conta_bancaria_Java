@@ -1,5 +1,6 @@
 package com.conta_bancaria.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
@@ -7,22 +8,23 @@ import java.util.UUID;
 
 @Entity
 @DiscriminatorValue("Poupanca") // Valor que será armazenado na coluna do discriminat
-public class ContaPoupanca extends Conta{
+public class ContaPoupanca extends ContaModel {
 
-    private int _aniversario;
+    @Column(name = "aniversario")
+    private int aniversario;
 
     public ContaPoupanca() {
     }
 
-    public ContaPoupanca(UUID numero, int agencia, int tipo, String titular, int saldo) {
-        super(numero, agencia, tipo, titular, saldo);
+    public ContaPoupanca(UUID id, int numero, int agencia, String titular, int saldo) {
+        super(id, numero, agencia, titular, saldo);
     }
 
-    public int get_aniversario() {
-        return _aniversario;
+    public int getAniversario() {
+        return aniversario;
     }
 
-    public void set_aniversario(int _aniversario) {
-        this._aniversario = _aniversario;
+    public void setAniversario(int aniversario) {
+        this.aniversario = aniversario;
     }
 }
